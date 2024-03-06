@@ -1,0 +1,23 @@
+#Spring configuration
+server:
+  port: 8081
+  compression:
+    enabled: true
+    min-response-size: 1024
+spring:
+  application:
+    name: SpringBoot_GoogleDrive
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+    
+#Configuracion personalizada
+google:
+  drive:
+    app-name: api-google-drive #Personalizado
+    credentials: 
+      file-name: credentials.json #Archivo debe estar en src/main/resources
+    folder:
+      root-id: 1P9DY-3B9CCimuo776swxI-BC91_aWsKv #Personalizado
+     
