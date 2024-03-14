@@ -60,7 +60,7 @@ public class FileController {
 			   responses = @ApiResponse(responseCode = "201", description = InfoApi.FILE_CREATE_RES))
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ResponseGenericDto<FileDto>> uploadFile(@Parameter(description = "Archivo multimedia") @RequestParam(name = "file", required = true) MultipartFile file,
-																	@Parameter(description = "Identificador unico de carpeta. El valor puede ser 'root'") @RequestParam(name = "idFolder", required = true) String idFolder){
+								     @Parameter(description = "Identificador unico de carpeta. El valor puede ser 'root'") @RequestParam(name = "idFolder", required = true) String idFolder){
 		log.info("Metodo: POST, Operacion: uploadFile, datos: {}, {}", file.getOriginalFilename(), idFolder);
 		//Llama al servicio
 		FileDto fileDto = this.filesService.uploadFile(file, idFolder);
@@ -105,9 +105,9 @@ public class FileController {
 			   responses = @ApiResponse(responseCode = "200", description = InfoApi.FILE_LIST_RES))
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ResponseGenericDto<FileDto>> listFiles(@Parameter(description = "Nombre completo de archivo con extension") @RequestParam(name = "name", required = false) String name,
-									   							@Parameter(description = "Identificador unico de carpeta. El valor puede ser 'root'") @RequestParam(name = "idFolder", required = false) String idFolder,
-									   							@Parameter(description = "Tipo de archivo") @RequestParam(name = "mimeType", required = false) String mimeType,
-									   							@Parameter(description = "Palabra clave") @RequestParam(name = "contains", required = false) String contains){
+									@Parameter(description = "Identificador unico de carpeta. El valor puede ser 'root'") @RequestParam(name = "idFolder", required = false) String idFolder,
+									@Parameter(description = "Tipo de archivo") @RequestParam(name = "mimeType", required = false) String mimeType,
+									@Parameter(description = "Palabra clave") @RequestParam(name = "contains", required = false) String contains){
 		log.info("Metodo: GET, Operacion: listFiles, datos: name:{}, idFolder:{}, mimeType:{}, contains:{}",name ,idFolder, mimeType, contains);
 		//Llamar a servicio
 		List<FileDto> listFiles = this.filesService.findFiles(name, idFolder, mimeType, contains);
