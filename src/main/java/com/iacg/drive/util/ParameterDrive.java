@@ -8,6 +8,11 @@ package com.iacg.drive.util;
 public class ParameterDrive {
 	
 	/**
+	 * Constructor privado que evita la instancia
+	 */
+	private ParameterDrive() {}
+	
+	/**
 	 * Variable ROOT
 	 */
 	public static final String ROOT = "root";

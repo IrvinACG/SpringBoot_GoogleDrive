@@ -20,6 +20,11 @@ public class QueryFileUtils {
 	public String rootFolder;
 	
 	/**
+	 * Variable and
+	 */
+	private final String AND = " and ";
+	
+	/**
 	 * Metodo que verifica si la carpeta es root
 	 * @param idFolder Identificador unico de carpeta
 	 * @return boolean Respuesta
@@ -50,21 +55,21 @@ public class QueryFileUtils {
 		//Nombre
 		if(Objects.nonNull(name)) {
 			if(!sb.toString().equals("")) {
-				sb.append(" and ");
+				sb.append(AND);
 			}
 			sb.append("name = '" + name + "'");
 		}
 		//MimeType
 		if(Objects.nonNull(mimeType)) {
 			if(!sb.toString().equals("")) {
-				sb.append(" and ");
+				sb.append(AND);
 			}
 			sb.append("mimeType = '" + mimeType + "'");
 		}
 		//Contains
 		if(Objects.nonNull(contains)) {
 			if(!sb.toString().equals("")) {
-				sb.append(" and ");
+				sb.append(AND);
 			}
 			sb.append("fullText contains '" + contains + "'");
 		}

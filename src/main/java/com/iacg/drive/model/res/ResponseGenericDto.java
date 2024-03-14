@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseGenericDto<T> implements Serializable{
+public class ResponseGenericDto<T extends Serializable> implements Serializable{
 
 	/**
 	 * Variable serialVersionUID

@@ -50,10 +50,9 @@ public class GoogleDriveConfig{
 	Drive createClient() {
 		HttpRequestInitializer requestInitializer = new HttpCredentialsAdapter(this.configCredentials());
 		// Build a new authorized API client service.
-		Drive clientDrive = new Drive.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance(), requestInitializer)
+		return new Drive.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance(), requestInitializer)
 									 .setApplicationName(this.appName)
 									 .build();
-		return clientDrive;
 	}
 	
 	/**
@@ -82,13 +81,13 @@ public class GoogleDriveConfig{
 	 */
 	@Bean
 	File fileCredentialConfig() {
-		File fileCredential = null;
+		File file = null;
 		try {
-			fileCredential = new ClassPathResource(this.fileCredential).getFile();
+			file = new ClassPathResource(this.fileCredential).getFile();
 		} catch (IOException e) {
 			log.error("No se pudo encontrar el archivo de configuracion, error: {}",e.getMessage());
 		}
-		return fileCredential;
+		return file;
 	}
 	
 }//Fin de clase

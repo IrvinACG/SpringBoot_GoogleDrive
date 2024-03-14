@@ -8,6 +8,11 @@ package com.iacg.drive.util;
 public class MsgError {
 	
 	/**
+	 * Constructor privado que evita la instancia
+	 */
+	private MsgError() {}
+	
+	/**
 	 * Variable FOLDER_EXIST
 	 */
 	public static final String FOLDER_EXIST = "Ya existe carpeta con el mismo nombre, en el mismo espacio";

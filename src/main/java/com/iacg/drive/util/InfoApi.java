@@ -6,6 +6,11 @@ package com.iacg.drive.util;
  * @author IACG
  */
 public class InfoApi {
+	
+	/**
+	 * Constructor privado que evita la instancia
+	 */
+	private InfoApi() {}
 
 	/**
 	 * Variable FOLDER_CREATED

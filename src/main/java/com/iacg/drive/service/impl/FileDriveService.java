@@ -20,6 +20,7 @@ import com.iacg.drive.model.FileDto;
 import com.iacg.drive.service.IFilesDriveService;
 import com.iacg.drive.util.MsgError;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * 
  * @author IACG
  */
+@Setter
 @Slf4j
 @Service
 public class FileDriveService extends GenericFileService implements IFilesDriveService{

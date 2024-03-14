@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DefaultException {
+public class DefaultError {
 
 	/**
 	 * Variable httpStatus

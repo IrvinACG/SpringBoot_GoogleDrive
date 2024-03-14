@@ -34,14 +34,14 @@ public class RestExceptionHandler {
 	 * @return ResponseEntity<ModelException> Error
 	 */
 	@ExceptionHandler(value = {GeneralException.class})
-	public ResponseEntity<DefaultException> handlerCustomException (CustomException e, HttpServletRequest request){
-	    DefaultException exception = new DefaultException(e.getStatus(), 
+	public ResponseEntity<DefaultError> handlerCustomException (CustomException e, HttpServletRequest request){
+	    DefaultError exception = new DefaultError(e.getStatus(), 
 	    												e.getCode(), 
 													 	e.getMessage(), 
 													 	e.getLevel(), 
 													 	e.getDescription(), 
 													 	request.getRequestURL().toString());
-	    log.error("Error: {}",exception.toString());
+	    log.error("Error handlerCustomException: {}",exception.toString());
 	    return ResponseEntity.status(e.getStatus()).body(exception);
 	}
 	
@@ -52,15 +52,15 @@ public class RestExceptionHandler {
 	 * @return ResponseEntity<ModelException> Error
 	 */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<DefaultException> handleGenericException(Exception e, HttpServletRequest request){
+    public ResponseEntity<DefaultError> handleGenericException(Exception e, HttpServletRequest request){
     	
-    	DefaultException exception = new DefaultException(GeneralCatalog.GRAL001.getHtttpStatus().value(), 
+    	DefaultError exception = new DefaultError(GeneralCatalog.GRAL001.getHtttpStatus().value(), 
     												  GeneralCatalog.GRAL001.getCode(), 
     												  e.getMessage(), 
     												  GeneralCatalog.GRAL001.getLevelException().toString(), 
     												  GeneralCatalog.GRAL001.getMessage(), 
     												  request.getRequestURL().toString());
-	    log.error("Error: {}, class: {}",exception.toString(), e.getClass());
+	    log.error("Error handleGenericException: {}, class: {}",exception.toString(), e.getClass());
     	return ResponseEntity.status(GeneralCatalog.GRAL001.getHtttpStatus()).body(exception);
     }
 
@@ -71,15 +71,15 @@ public class RestExceptionHandler {
      * @return ResponseEntity<ModelException> Error
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<DefaultException> handlerMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
+    public ResponseEntity<DefaultError> handlerMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
     	
-    	DefaultException exception = new DefaultException(GeneralCatalog.GRAL007.getHtttpStatus().value(), 
+    	DefaultError exception = new DefaultError(GeneralCatalog.GRAL007.getHtttpStatus().value(), 
 													  GeneralCatalog.GRAL007.getCode(), 
 													  e.getMessage(), 
 													  GeneralCatalog.GRAL007.getLevelException().toString(),
 													  GeneralCatalog.GRAL007.getMessage(),
 													  request.getRequestURL().toString());
-	    log.error("Error: {}",exception.toString());
+	    log.error("Error handleGenericException: {}",exception.toString());
     	return ResponseEntity.status(GeneralCatalog.GRAL007.getHtttpStatus()).body(exception);
     }
     
@@ -92,15 +92,15 @@ public class RestExceptionHandler {
 	@ExceptionHandler(value = {MissingServletRequestParameterException.class,
 							   MethodArgumentTypeMismatchException.class,
 							   NumberFormatException.class})
-	public ResponseEntity<DefaultException> handleValidationException(MissingServletRequestParameterException e, HttpServletRequest request) {
+	public ResponseEntity<DefaultError> handleValidationException(MissingServletRequestParameterException e, HttpServletRequest request) {
 			
-		DefaultException exception = new DefaultException(GeneralCatalog.GRAL002.getHtttpStatus().value(), 
+		DefaultError exception = new DefaultError(GeneralCatalog.GRAL002.getHtttpStatus().value(), 
 													  GeneralCatalog.GRAL002.getCode(), 
 													  e.getMessage(), 
 													  GeneralCatalog.GRAL002.getLevelException().toString(), 
 													  GeneralCatalog.GRAL002.getMessage(), 
 													  request.getRequestURL().toString());
-	    log.error("Error: {}",exception.toString());
+	    log.error("Error handleValidationException: {}",exception.toString());
     	return ResponseEntity.status(GeneralCatalog.GRAL002.getHtttpStatus()).body(exception);
     }
 	
@@ -111,7 +111,7 @@ public class RestExceptionHandler {
 	 * @return ResponseEntity<ModelException> Error
 	 */
 	@ExceptionHandler(value = {MethodArgumentNotValidException.class})
-	public ResponseEntity<DefaultException> handleValidationExceptionParameters(MethodArgumentNotValidException e, HttpServletRequest request) {
+	public ResponseEntity<DefaultError> handleValidationExceptionParameters(MethodArgumentNotValidException e, HttpServletRequest request) {
 		
 		//Obtener errores
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
@@ -119,13 +119,13 @@ public class RestExceptionHandler {
         StringBuilder errorMessage = new StringBuilder();
         fieldErrors.forEach(f -> errorMessage.append("Parameter '" + f.getField() + "': " + f.getDefaultMessage() + " "));
 		
-		DefaultException exception = new DefaultException(GeneralCatalog.GRAL002.getHtttpStatus().value(), 
+		DefaultError exception = new DefaultError(GeneralCatalog.GRAL002.getHtttpStatus().value(), 
 													  GeneralCatalog.GRAL002.getCode(), 
 													  errorMessage.toString(), 
 													  GeneralCatalog.GRAL002.getLevelException().toString(), 
 													  GeneralCatalog.GRAL002.getMessage(), 
 													  request.getRequestURL().toString());
-	    log.error("Error: {}",exception.toString());
+	    log.error("Error handleValidationExceptionParameters: {}",exception.toString());
     	return ResponseEntity.status(GeneralCatalog.GRAL002.getHtttpStatus()).body(exception);
 	}
 	
@@ -136,14 +136,14 @@ public class RestExceptionHandler {
 	 * @return ResponseEntity<DefaultException> Error
 	 */
 	@ExceptionHandler(MaxUploadSizeExceededException.class)
-	public ResponseEntity<DefaultException> handleValidationSizeFile(MaxUploadSizeExceededException e, HttpServletRequest request) {
-		DefaultException exception = new DefaultException(GeneralCatalog.GRAL008.getHtttpStatus().value(), 
+	public ResponseEntity<DefaultError> handleValidationSizeFile(MaxUploadSizeExceededException e, HttpServletRequest request) {
+		DefaultError exception = new DefaultError(GeneralCatalog.GRAL008.getHtttpStatus().value(), 
 													  GeneralCatalog.GRAL008.getCode(), 
 													  e.getMessage(), 
 													  GeneralCatalog.GRAL008.getLevelException().toString(), 
 													  GeneralCatalog.GRAL008.getMessage(), 
 													  request.getRequestURL().toString());
-	    log.error("Error: {}",exception.toString());
+	    log.error("Error handleValidationSizeFile: {}",exception.toString());
     	return ResponseEntity.status(GeneralCatalog.GRAL008.getHtttpStatus()).body(exception);
 	}
 }//Fin de clase
