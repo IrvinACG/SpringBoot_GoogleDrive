@@ -22,7 +22,7 @@ public class QueryFileUtils {
 	/**
 	 * Variable and
 	 */
-	private final String AND = " and ";
+	private static final String AND = " and ";
 	
 	/**
 	 * Metodo que verifica si la carpeta es root
