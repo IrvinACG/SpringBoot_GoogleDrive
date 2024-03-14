@@ -19,5 +19,5 @@ google:
     credentials: 
       file-name: credentials.json #Archivo debe estar en src/main/resources
     folder:
-      root-id: xxxxxxxxxxxxxxxxxxxxxxx #Personalizado Identificador unico de carpeta de Drive
+      root-id: xxxxxxx-id-folder-xxxxxxxxxx #Personalizado Identificador unico de carpeta de Drive
       
